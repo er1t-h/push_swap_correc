@@ -56,15 +56,20 @@ function test_ps {
 	worstCase=0
 	bestArg=""
 	worstArg=""
+	avg=0
 	count_0=0
 	count_1=0
 	count_2=0
 	count_3=0
 	count_4=0
 	count_5=0
+	echo -n "\033[2J"
 	while [ $cpt -lt $repet ]
 	do
-		echo -n "\r$cpt/$repet"
+		echo "\033[0;0H\033[0J$cpt/$repet"
+		echo "Best Case: $bestCase"
+		echo "Average: $avg"
+		echo "Worst Case: $worstCase"
 		ARG=`ruby -e "puts (1..$nbmax).to_a.shuffle.join(' ')"`
 		if [ $enable_valgrind -eq 1 ]
 		then
@@ -122,6 +127,7 @@ function test_ps {
 			count_5=$(($count_5 + 1))
 		fi
 		cpt=$(($cpt + 1))
+		avg=$(($total / $cpt))
 	done
 	echo -n "\r$cpt/$repet"
 	if [ $print_result -eq 1 ]
@@ -352,21 +358,23 @@ limit3=1300
 limit4=1500
 enable_valgrind=0
 print_result=1
-
+echo "Press [ENTER] to continue"
+read tg
 test_ps
 
 echo "$CYAN ----==== PART 3.5: 100 numbers, checking leaks ====---- $NC"
 repet=$REPET_VALGRIND
 enable_valgrind=1
 print_result=0
-
+echo "Press [ENTER] to continue"
+read tg
 test_ps
 
 ################################################################################
 
 echo "$CYAN ----==== PART 4: 500 numbers ====---- $NC"
 repet=$REPET_500
-nbmax=500
+nbmax=4990
 
 limit0=5500
 limit1=7000
@@ -375,13 +383,15 @@ limit3=10000
 limit4=11500
 enable_valgrind=0
 print_result=1
-
+echo "Press [ENTER] to continue"
+read tg
 test_ps
 
 echo "$CYAN ----==== PART 4.5: 500 numbers, checking leaks ====---- $NC"
 repet=$REPET_VALGRIND
 enable_valgrind=1
 print_result=0
-
+echo "Press [ENTER] to continue"
+read tg
 test_ps
 
