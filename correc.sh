@@ -332,7 +332,7 @@ fi
 ################################################################################
 
 echo "$CYAN ----==== PART 1: 3 numbers ====---- $NC"
-repet=20
+repet=10
 nbmax=3
 limit=3
 test_low
@@ -340,7 +340,7 @@ test_low
 ################################################################################
 
 echo "$CYAN ----==== PART 2: 5 numbers ====---- $NC"
-repet=50
+repet=25
 nbmax=5
 limit=12
 test_low
@@ -374,7 +374,7 @@ test_ps
 
 echo "$CYAN ----==== PART 4: 500 numbers ====---- $NC"
 repet=$REPET_500
-nbmax=4990
+nbmax=500
 
 limit0=5500
 limit1=7000
